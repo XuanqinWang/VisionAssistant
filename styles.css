@@ -1,0 +1,556 @@
+/* 重置和基础样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #ffffff;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* 容器布局 */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 标题区域 */
+.header {
+    text-align: center;
+    margin-bottom: 0;
+    padding: 10px 0;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffd700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #b0c4de;
+    font-weight: 300;
+}
+
+/* 主要内容区域 */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* 摄像头区域 */
+.camera-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.camera-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #000;
+    aspect-ratio: 1/1;
+}
+
+.camera-video,
+.captured-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.capture-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.captured-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+}
+
+/* 状态消息 */
+.status-message {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1.1rem;
+    color: #87ceeb;
+    font-weight: 500;
+}
+
+/* 控制按钮区域 */
+.controls-section {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* 按钮样式 */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px 40px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    min-height: 80px;
+    min-width: 300px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.btn:focus {
+    outline: 3px solid #ffd700;
+    outline-offset: 2px;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.btn-icon {
+    font-size: 1.5rem;
+}
+
+.btn-text {
+    font-size: 1.2rem;
+}
+
+/* 主要按钮 */
+.btn-primary {
+    background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+    color: white;
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(255, 107, 107, 0.6);
+}
+
+.btn-primary:active:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+/* 次要按钮 */
+.btn-secondary {
+    background: linear-gradient(45deg, #4ecdc4, #44a08d);
+    color: white;
+    box-shadow: 0 8px 25px rgba(78, 205, 196, 0.4);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(78, 205, 196, 0.6);
+}
+
+.btn-secondary:active:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+/* 音频按钮 */
+.btn-audio {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    min-width: 160px;
+}
+
+.btn-audio:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+}
+
+/* 小按钮 */
+.btn-small {
+    padding: 10px 20px;
+    font-size: 1rem;
+    min-height: 40px;
+    min-width: 80px;
+    background: linear-gradient(45deg, #ffa726, #ff7043);
+}
+
+.btn-small:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+/* 速度按钮样式 */
+.btn-speed {
+    padding: 0;
+    background-color: transparent; /* 透明背景 */
+    border: 1px solid #ccc; /* 添加边框 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #ccc; /* 设置文字颜色 */
+    height: 28px; /* 固定高度 */
+    width: 28px;
+}
+
+/* 去除按钮焦点时的默认轮廓 */
+.btn-speed:focus {
+    outline: none;
+}
+
+/* 按钮悬停效果 */
+.btn-speed:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* 音频控制区域布局 */
+.audio-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 0 20px; /* 添加一些内边距防止贴边 */
+}
+
+/* 速度按钮容器 */
+.speed-buttons {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    width: 30%;
+    max-width: 80px; /* 根据按钮数量和大小设置最大宽度 */
+    margin: 0 auto;
+}
+
+/* 识别结果区域 */
+.result-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 25px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.result-title {
+    font-size: 1.8rem;
+    color: #ffd700;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.result-text {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border-left: 4px solid #ffd700;
+}
+
+/* 音频控制 */
+.audio-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+}
+
+.result-audio {
+    width: 100%;
+    max-width: 400px;
+    height: 50px;
+}
+
+/* 加载指示器 */
+.loading-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 215, 0, 0.3);
+    border-top: 4px solid #ffd700;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    font-size: 1.2rem;
+    color: #87ceeb;
+    text-align: center;
+}
+
+/* 错误消息 */
+.error-message {
+    background: linear-gradient(45deg, #ff4757, #ff3838);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+    box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4);
+}
+
+.error-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.error-icon {
+    font-size: 1.5rem;
+}
+
+.error-text {
+    font-size: 1.1rem;
+    flex: 1;
+}
+
+/* 帮助区域 */
+.footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.help-section {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.help-toggle {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffd700;
+    cursor: pointer;
+    padding: 10px 0;
+    list-style: none;
+}
+
+.help-toggle::-webkit-details-marker {
+    display: none;
+}
+
+.help-toggle::before {
+    content: "▶ ";
+    transition: transform 0.3s ease;
+}
+
+.help-section[open] .help-toggle::before {
+    transform: rotate(90deg);
+}
+
+.help-content {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.help-content h3 {
+    color: #87ceeb;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.help-content h3:first-child {
+    margin-top: 0;
+}
+
+.help-content ol,
+.help-content ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.help-content li {
+    margin-bottom: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .btn {
+        padding: 18px 30px;
+        font-size: 1.1rem;
+        min-width: 180px;
+    }
+    
+    .btn-text {
+        font-size: 1.1rem;
+    }
+    
+    .controls-section {
+        gap: 15px;
+    }
+    
+    .result-text {
+        font-size: 1.1rem;
+        padding: 15px;
+    }
+    
+    .camera-container {
+        aspect-ratio: 1/1;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.8rem;
+    }
+    
+    .btn {
+        padding: 15px 25px;
+        font-size: 1rem;
+        min-width: 75px;
+        min-height: 60px;
+    }
+    
+    .btn-icon {
+        font-size: 1.3rem;
+    }
+    
+    .btn-text {
+        font-size: 1rem;
+    }
+    
+    .controls-section {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .result-text {
+        font-size: 1rem;
+    }
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+    body {
+        background: #000000;
+        color: #ffffff;
+    }
+    
+    .btn-primary {
+        background: #ff0000;
+        border: 2px solid #ffffff;
+    }
+    
+    .btn-secondary {
+        background: #0000ff;
+        border: 2px solid #ffffff;
+    }
+    
+    .camera-section,
+    .result-section,
+    .loading-indicator {
+        background: #333333;
+        border: 2px solid #ffffff;
+    }
+}
+
+/* 减少动画模式支持 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .loading-spinner {
+        animation: none;
+        border: 4px solid #ffd700;
+    }
+}
+
+/* 打印样式 */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .btn,
+    .loading-indicator,
+    .error-message {
+        display: none;
+    }
+    
+    .camera-section,
+    .result-section {
+        background: white;
+        border: 1px solid black;
+    }
+}
+
