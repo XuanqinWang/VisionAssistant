@@ -9,8 +9,11 @@ Note - curretnly the recoginized description only supports Chinese, and the voic
 I deployed this app to my personal cloud server and created an URL for demostration. If you are interested, please try via below URL:
 http://xuanqin.wang/app/vision-assistant/
 
+you could check this video (http://xuanqin.wang/OICdemo.mp4) to deply my app to your iPhone desktop. 
+
 If you run it from your mobile phone, please use web brower app to open like Chrome or Safari. 
 Don't run it too many times, it'll brankrupt me, haha!
+
 
 # Contact
 Please drop me suggestions or questions via email - minowang0874@gmail.com
